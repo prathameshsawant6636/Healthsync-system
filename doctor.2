@@ -1,0 +1,69 @@
+CREATE TABLE patient2 (
+    patientID NUMBER PRIMARY KEY,
+    Fullname VARCHAR2(30) NOT NULL,
+    age NUMBER NOT NULL,
+    Birth_date DATE,
+    gender VARCHAR2(1),
+    Blood_GROUP VARCHAR2(3),
+    address VARCHAR2(20),
+    Contact_NO VARCHAR2(10) NOT NULL
+);
+desc patient2;
+
+INSERT INTO patient2 VALUES 
+(101, 'LAXIMAN', 50, TO_DATE('1971-01-01','YYYY-MM-DD'), 'M', 'A+', 'MUMBAI', '3242839112');
+
+INSERT INTO patient2 VALUES 
+(104, 'VIKAS', 46, TO_DATE('1979-09-03','YYYY-MM-DD'), 'M', 'B+', 'PUNE', '4922839103');
+
+INSERT INTO patient2 VALUES 
+(105, 'RAMESH', 51, TO_DATE('1971-01-06','YYYY-MM-DD'), 'M', 'A+', 'SANGLI', '9405577966');
+
+INSERT INTO patient2 VALUES 
+(107, 'KIRAN', 38, TO_DATE('2002-08-11','YYYY-MM-DD'), 'M', 'O+', 'LATUR', '4827937292');
+
+INSERT INTO patient2 VALUES 
+(108, 'MAHESH', 40, TO_DATE('1991-04-04','YYYY-MM-DD'), 'M', 'B-', 'GOA', '4180327212');
+
+INSERT INTO patient2 VALUES 
+(110, 'LAXMI', 67, TO_DATE('1960-12-08','YYYY-MM-DD'), 'F', 'O-', 'NASHIK', '4527751912');
+
+select * from patient2;
+
+
+CREATE TABLE Test (
+    test_id NUMBER PRIMARY KEY,
+    test_name VARCHAR2(50),
+    cost NUMBER
+);
+
+desc test;
+
+INSERT INTO Test VALUES (1, 'Blood Test', 500);
+INSERT INTO Test VALUES (2, 'X-Ray', 1000);
+
+
+CREATE TABLE Report (
+    report_id NUMBER PRIMARY KEY,
+    result VARCHAR2(100),
+    report_date DATE,
+    patient_id NUMBER,
+    test_id NUMBER,
+    FOREIGN KEY (patient_id) REFERENCES patient2(patientID),
+    FOREIGN KEY (test_id) REFERENCES Test(test_id)
+);
+
+desc Report;
+
+INSERT INTO Report VALUES 
+(1, 'Normal', SYSDATE, 101, 1);
+
+
+SELECT * FROM patient2;
+
+
+
+SELECT * FROM Test;
+
+
+SELECT * FROM Report;
